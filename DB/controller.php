@@ -95,22 +95,26 @@ class Controller{
             $run_no = "A$year$month".$req;
             // echo $run_no;
 
-            $sql = "INSERT INTO job (ID, Date, Subject, Problem, Requirement, Request_by, Receive, Finish, Sub, Department, Section )
-                            VALUES (:ID, :Date, :Subject, :Problem, :Requirement, :Request_by, :Receive,:Finish, :Sub, :Department ,:Section )";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(":ID",$run_no);
-            $stmt->bindParam(":Date",$Date);
-            $stmt->bindParam(":Subject",$Subject);
-            $stmt->bindParam(":Problem",$Problem);
-            $stmt->bindParam(":Requirement",$Requirement);
-            $stmt->bindParam(":Request_by",$Request_by);
-            $stmt->bindParam(":Sub",$Sub);
-            $stmt->bindParam(":Receive",$Receive);
-            $stmt->bindParam(":Finish",$Finish);
-            $stmt->bindParam(":Department",$Department);
-            $stmt->bindParam(":Section",$Section);
             
-            $stmt->execute();
+            // $sql = "INSERT INTO job (ID, Date, Subject, Problem, Requirement, Request_by, Receive, Finish, Sub, Department, Section )
+            //                 VALUES (:ID, :Date, :Subject, :Problem, :Requirement, :Request_by, :Receive,:Finish, :Sub, :Department ,:Section )";
+            // $stmt = $this->db->prepare($sql);
+            // $stmt->bindParam(":ID",$run_no);
+            // $stmt->bindParam(":Date",$Date);
+            // $stmt->bindParam(":Subject",$Subject);
+            // $stmt->bindParam(":Problem",$Problem);
+            // $stmt->bindParam(":Requirement",$Requirement);
+            // $stmt->bindParam(":Request_by",$Request_by);
+            // $stmt->bindParam(":Sub",$Sub);
+            // $stmt->bindParam(":Receive",$Receive);
+            // $stmt->bindParam(":Finish",$Finish);
+            // $stmt->bindParam(":Department",$Department);
+            // $stmt->bindParam(":Section",$Section);
+            // $stmt->execute();
+
+            $sql = "INSERT INTO `job` (`ID`, `Date`, `Subject`, `Problem`, `Requirement`, `Request_by`, `Receive`, `Finish`, `Sub`, `Department`, `Section` )
+                            VALUES ('$run_no', '$Date', '$Subject', '$Problem', '$Requirement', '$Request_by', '$Receive','$Finish', '$Sub', '$Department' ,'$Section' )";
+            $result = $this->db->query($sql);            
             return true;
 
         }catch(PDOException $e){
