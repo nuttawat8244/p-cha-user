@@ -92,7 +92,7 @@ class Controller{
             // else{
             // }
 
-            $run_no = "A$year$month".$req;
+            $run_no = "J$year$month".$req;
             // echo $run_no;
 
             
