@@ -70,10 +70,20 @@ class Controller{
 
     function Addjob($Date, $Subject, $Problem, $Requirement, $Request_by, $Receive, $Finish, $Sub, $Department, $Section){
         try{
-            date_default_timezone_set('Asia/Bangkok');
+                       date_default_timezone_set('Asia/Bangkok');
             $year = date('y');
             $month = date('m');
 
+            $run = "SELECT * FROM job order by ID DESC";
+            $result_run = $this->db->query($run);
+            $row = $result_run->fetch(PDO::FETCH_ASSOC);
+            $N = $row['ID'];
+            //echo $N ;
+            $test0 = substr($N,7,7);
+            $test = substr($N,6,7);
+            $test1 = substr($N,5,7);
+            //echo $test1;
+        
             
             $numrow = "SELECT COUNT(*) as num FROM job; ";
             
@@ -84,16 +94,20 @@ class Controller{
             // echo $length;
             $req = $row_no;
             if($length == 1){
+                $no = intval($test0)+1;
                 $req = "00".$row_no;
             }
             else if($length == 2){
-                $req = "0".$row_no;
+    
+                $no = intval($test)+1;
+                $req = "0".$no;
+                //echo $req ;
+            }else{
+                $no = intval($test1)+1;
+                $req = $no;
             }
-            // else{
-            // }
 
-            $run_no = "J$year$month".$req;
-            // echo $run_no;
+    $run_no = "A$year$month".$req;
 
             
             // $sql = "INSERT INTO job (ID, Date, Subject, Problem, Requirement, Request_by, Receive, Finish, Sub, Department, Section )
